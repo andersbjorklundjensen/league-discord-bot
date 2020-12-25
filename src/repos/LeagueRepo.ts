@@ -3,10 +3,10 @@ const axios = require('axios');
 export default class LeagueRepo {
   private apiToken: string;
 
-	constructor($apiToken: string) {
-		this.apiToken = $apiToken;
-	}
-  
+  constructor($apiToken: string) {
+    this.apiToken = $apiToken;
+  }
+
   async getMatchHistory(accountId: string) {
     return axios.get(`https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/${accountId}`, {
       headers: {
@@ -50,5 +50,21 @@ export default class LeagueRepo {
       gameDetails,
       gameDetailsForUser
     }
+  }
+
+  async getImageByChampionId(id: number) {
+    const response = await axios.get(`http://ddragon.leagueoflegends.com/cdn/10.25.1/data/en_US/champion.json`, {
+      headers: {
+        "X-Riot-Token": this.apiToken
+      }
+    })
+      .then((res: any) => res.data);
+
+    let championName;
+    for (const [key, value] of Object.entries(response.data)) {
+      // @ts-ignore
+      if (value.key == `${id}`) championName = value.id;
+    }
+    return `http://ddragon.leagueoflegends.com/cdn/10.25.1/img/champion/${championName}.png`
   }
 }

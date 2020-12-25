@@ -7,4 +7,10 @@ export default interface Message {
   deaths: number,
   assists: number,
   damageDealt: number,
+  championImage: string,
+  timeCCingOthers: string,
+  totalMinionsKilled: number,
+  visionWardsBoughtInGame: number,
+  totalHeal: number,
+  longestTimeSpentLiving: string,
 }
