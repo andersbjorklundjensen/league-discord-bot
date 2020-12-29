@@ -14,4 +14,4 @@ These are the environment variables you need to provide in order for the bot to 
 
 ## Screenshot
 Here is a screenshot from the discord chat:
-![](screenshot.PNG)
+![](screenshot.png)
